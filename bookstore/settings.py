@@ -163,3 +163,20 @@ MESSAGE_TAGS = {
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+
+# Allow Render host URL
+ALLOWED_HOSTS = ['*']
+
+# Add WhiteNoise Middleware (place it right below SecurityMiddleware)
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # ... your other middleware
+]
+
+# Static files settings
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
