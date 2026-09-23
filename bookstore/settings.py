@@ -50,7 +50,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Serves static files in production
+    'django.contrib.sessions.middleware.SessionMiddleware',  # Must be ABOVE AuthenticationMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -169,12 +170,6 @@ import os
 # Allow Render host URL
 ALLOWED_HOSTS = ['*']
 
-# Add WhiteNoise Middleware (place it right below SecurityMiddleware)
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    # ... your other middleware
-]
 
 # Static files settings
 STATIC_URL = '/static/'
